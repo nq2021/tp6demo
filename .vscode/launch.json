@@ -1,0 +1,66 @@
+/**
+ * launch.json配置文件用于配置调试器的启动选项。
+ * 
+ * @version 0.2.0
+ * @see [更多信息](https://go.microsoft.com/fwlink/?linkid=830387)
+ */
+{
+    /**
+     * 配置项数组，包含了不同的调试配置。
+     */
+    "configurations": [        
+        {
+            /**
+             * 配置名称，用于标识不同的调试配置。
+             */
+            "name": "Launch built-in server and debug",
+            /**
+             * 调试器类型，此处为php。
+             */
+            "type": "php",
+            // 添加启动路径为public下的index.php
+            "program": "${workspaceFolder}/index.php",
+            /**
+             * 请求类型，此处为launch。
+             */
+            "request": "launch",
+            /**
+             * 运行时参数，用于启动内置服务器。
+             */
+            "runtimeArgs": [
+                "-S",
+                "localhost:8000",
+                "-t",
+                "."
+            ],
+            /**
+             * 调试器监听的端口号。
+             */
+            "port": 9003,
+            /**
+             * 服务器准备就绪后的操作。
+             */
+            "serverReadyAction": {
+                /**
+                 * 执行的操作，此处为在外部打开。
+                 */
+                "action": "openExternally"
+            }
+        },
+        {
+            "name": "Debug current script in console",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "externalConsole": false,
+            "port": 9003
+        },
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9000
+        }
+    ]
+}
